@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Seekers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #4CAF50;
+            color: white;
+        }
+        a.btn {
+            text-decoration: none;
+            padding: 6px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        a.btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Registered Job Seekers</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Job Position</th>
+        <th>Resume</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop through seekers -->
+    <tr th:each="seeker : ${seekers}">
+        <td th:text="${seeker.name}">Name</td>
+        <td th:text="${seeker.email}">Email</td>
+        <td th:text="${seeker.jobPosition}">Position</td>
+        <td>
+            <a th:href="@{'/profile/download?username=' + ${seeker.user.username}}" class="btn">Download Resume</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/recruiter/dashboard" class="btn">Back to Dashboard</a>
+
+</body>
+</html>

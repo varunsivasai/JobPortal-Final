@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Seeker Dashboard</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 50px;
+        background: #f4f4f4;
+    }
+
+    h1 { color: #333; }
+
+    .btn {
+        display: inline-block;
+        margin: 15px;
+        padding: 12px 25px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: background 0.3s;
+    }
+
+    .btn:hover { background-color: #45a049; }
+
+    .btn-danger {
+        background-color: #d9534f;
+    }
+    .btn-danger:hover {
+        background-color: #c9302c;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Welcome, Job Seeker!</h1>
+<p>Select an action below:</p>
+
+<!-- Profile Management Section -->
+<div>
+  <a th:href="@{/profile/create}" class="btn">Create Profile</a>
+  <a th:href="@{/profile/edit}" class="btn">Edit Profile</a>
+  <a th:href="@{/profile}" class="btn">View Profile</a>
+  <a th:href="@{/profile/download}" class="btn">Download Resume</a>
+</div>
+
+<!-- Job Search & Apply Section -->
+<div>
+  <a th:href="@{/jobs/landing}" class="btn">Search & Apply for Jobs</a>
+  <a th:href="@{/jobs/my-applications}" class="btn">View My Applications</a>
+</div>
+
+<!-- Logout -->
+<div>
+  <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+</div>
+
+</body>
+</html>

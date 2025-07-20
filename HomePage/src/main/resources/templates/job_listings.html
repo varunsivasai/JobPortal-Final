@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Listings</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 40px; text-align: center; }
+    h1 { color: #333; }
+    .btn { display: inline-block; margin: 10px; padding: 12px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 6px; }
+    .btn:hover { background-color: #45a049; }
+    .search-box { margin: 20px; }
+    table { width: 80%; margin: auto; background: white; border-collapse: collapse; }
+    th, td { padding: 12px; border: 1px solid #ddd; }
+    th { background-color: #4CAF50; color: white; }
+    .no-jobs { margin-top: 20px; font-style: italic; color: #777; }
+    .message { color: green; font-weight: bold; margin-top: 15px; }
+    .error { color: red; font-weight: bold; margin-top: 15px; }
+  </style>
+</head>
+<body>
+
+<h1>Available Jobs</h1>
+
+<!-- Display messages -->
+<p class="message" th:if="${message}" th:text="${message}"></p>
+<p class="error" th:if="${error}" th:text="${error}"></p>
+
+<div class="search-box">
+  <form th:action="@{/jobs/landing}" method="get">
+    <input type="text" name="search" placeholder="Search by job title or company">
+    <button type="submit" class="btn">Search</button>
+  </form>
+</div>
+
+<table th:if="${jobs != null and !jobs.isEmpty()}">
+  <thead>
+  <tr>
+    <th>Job Title</th>
+    <th>Company</th>
+    <th>Location</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="job : ${jobs}">
+    <td th:text="${job.title}">Job Title</td>
+    <td th:text="${job.company}">Company</td>
+    <td th:text="${job.location}">Location</td>
+
+    <td>
+      <form th:action="@{'/jobs/apply/' + ${job.id}}" method="post" style="display:inline;">
+        <button type="submit" class="btn">Apply</button>
+      </form>
+    </td>
+
+
+
+  </tr>
+  </tbody>
+</table>
+
+<p class="no-jobs" th:if="${jobs == null or jobs.isEmpty()}">
+  No job postings are available at the moment. Please check back later.
+</p>
+
+<!-- Back to Dashboard -->
+<div style="margin-top: 20px;">
+  <a th:href="@{/jobseeker/homepage}" class="btn">Back to Dashboard</a>
+</div>
+
+</body>
+</html>

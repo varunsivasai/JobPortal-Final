@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Recruiter Dashboard</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        margin: 50px;
+        text-align: center;
+    }
+    h1 { color: #333; }
+    p { color: #555; margin-bottom: 30px; }
+
+    .btn {
+        display: inline-block;
+        margin: 15px;
+        padding: 15px 30px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        border-radius: 6px;
+        transition: background 0.3s;
+    }
+    .btn:hover { background-color: #45a049; }
+
+    .btn-danger {
+        background-color: #d9534f;
+    }
+    .btn-danger:hover {
+        background-color: #c9302c;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Welcome, Recruiter!</h1>
+<p>Select an action below to manage job seekers and job postings.</p>
+
+<div>
+  <!-- Navigation buttons -->
+  <a th:href="@{/recruiter/jobseekers}" class="btn">View Job Seekers</a>
+  <a th:href="@{/recruiter/jobs}" class="btn">Manage Job Postings</a>
+
+  <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+</div>
+
+</body>
+</html>

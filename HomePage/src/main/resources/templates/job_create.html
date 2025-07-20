@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Job Post</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; text-align: center; }
+    h1 { color: #333; }
+    form { background: #fff; padding: 20px; border-radius: 8px; width: 400px; margin: auto; }
+    label { display: block; margin-top: 10px; }
+    input { width: 100%; padding: 8px; margin-top: 5px; }
+    .btn { padding: 10px 20px; margin-top: 15px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    .btn-back { background: #007bff; }
+  </style>
+</head>
+<body>
+
+<h1>Create Job Post</h1>
+
+<form th:action="@{/jobs/save}" th:object="${job}" method="post">
+  <label>Job Title</label>
+  <input type="text" th:field="*{title}" required>
+
+  <label>Company</label>
+  <input type="text" th:field="*{company}" required>
+
+  <label>Location</label>
+  <input type="text" th:field="*{location}" required>
+
+  <button type="submit" class="btn">Save Job</button>
+</form>
+
+<a th:href="@{/jobs/manage}" class="btn btn-back">Back to Manage Jobs</a>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Applications</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        text-align: center;
+        margin: 40px;
+    }
+    table {
+        width: 80%;
+        margin: auto;
+        border-collapse: collapse;
+        background: white;
+    }
+    th, td {
+        padding: 12px;
+        border: 1px solid #ddd;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .btn {
+        display: inline-block;
+        padding: 8px 15px;
+        margin: 5px;
+        background: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .btn:hover { background: #45a049; }
+    .btn-danger {
+        background: #d9534f;
+    }
+    .btn-danger:hover {
+        background: #c9302c;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Applications for Selected Job Seeker</h1>
+
+<table th:if="${applications != null and !applications.isEmpty()}">
+  <thead>
+  <tr>
+    <th>Job Title</th>
+    <th>Company</th>
+    <th>Status</th>
+    <th>Update</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="app : ${applications}">
+    <td th:text="${app.job.title}">Job</td>
+    <td th:text="${app.job.company}">Company</td>
+    <td th:text="${app.status}">Pending</td>
+    <td>
+      <form th:action="@{'/recruiter/applications/' + ${app.id} + '/update'}" method="post">
+        <select name="status">
+          <option>Pending</option>
+          <option>Accepted</option>
+          <option>Rejected</option>
+        </select>
+        <button type="submit" class="btn">Update</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<p th:if="${applications == null or applications.isEmpty()}">
+  No applications found for this job seeker.
+</p>
+
+<!-- Navigation -->
+<div style="margin-top: 20px;">
+  <a th:href="@{/recruiter/jobseekers}" class="btn">Back to Job Seekers</a>
+  <a th:href="@{/recruiter/dashboard}" class="btn">Back to Dashboard</a>
+</div>
+
+</body>
+</html>
